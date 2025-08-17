@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
-import { Azeret_Mono, Aleo } from "next/font/google";
 import "./globals.css";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-
-export const aleo = Aleo({
-  subsets: ["latin"],
-});
-
-export const azeretMono = Azeret_Mono({
-  subsets: ["latin"],
-});
+import { aleo } from "../fonts";
+import Navbar from "./_components/Navbar";
 
 export const metadata: Metadata = {
   title: "Fenzo",
@@ -32,10 +25,11 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale} className={aleo.className}>
-      <body
-        className={`antialiased ${aleo.className}`}
-      >
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      <body className={`antialiased ${aleo.className} bg-background`}>
+        <NextIntlClientProvider>
+          <Navbar />
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

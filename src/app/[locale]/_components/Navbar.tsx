@@ -1,6 +1,10 @@
 "use client";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { azeretMono } from "@/app/fonts";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -8,12 +12,24 @@ export default function Navbar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const t = useTranslations();
+  const pathname = usePathname();
+
+  const getLocaleFromPathname = (path: string) => {
+    const parts = path.split("/").filter(Boolean);
+    return parts.length > 0 ? parts[0] : "";
+  };
+
+  const currentLocale = getLocaleFromPathname(pathname);
+  const pathWithoutLocale = pathname.replace(`/${currentLocale}`, "");
+
   // Navigation items array
   const navItems = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "News", href: "/news" },
-    { name: "Contact", href: "/contact" },
+    { name: t("home"), href: "/" },
+    { name: t("designs"), href: "/designs" },
+    { name: t("myOrders"), href: "/my-orders" },
+    { name: t("contactUs"), href: "/contact-us" },
+    { name: t("about"), href: "/about" },
   ];
 
   return (
@@ -26,13 +42,16 @@ export default function Navbar() {
           className="fixed inset-0 z-[210] bg-black/50 lg:hidden"
         ></div>
       )}
-      <nav className="block w-full max-w-screen px-4 py-4 mx-auto bg-white bg-opacity-90 sticky top-3 shadow lg:px-8 backdrop-blur-lg backdrop-saturate-150 z-[200]">
-        <div className="container flex flex-wrap items-center justify-between mx-auto text-slate-800">
-          <Link
-            href="/"
-            className="mr-4 block cursor-pointer py-1.5 text-red-600 font-bold text-2xl"
-          >
-            NEXTNEWS
+      <nav className="border-b-2 border-main block w-full max-w-screen px-4 mx-auto bg-main-light bg-opacity-90 sticky top-3 lg:px-8 backdrop-blur-lg backdrop-saturate-150 z-[200]">
+        <div className="container flex flex-wrap items-center justify-between mx-auto tracking-wide py-1">
+          <Link href="/" className="mr-4 block cursor-pointer">
+            <Image
+              src={"/assets/logo.svg"}
+              width={150}
+              height={150}
+              alt="Fenzo Logo"
+              className="-translate-x-2.5"
+            />
           </Link>
 
           <div className="lg:hidden">
@@ -60,44 +79,64 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:block">
+          <div className={`hidden lg:block ${azeretMono.className}`}>
             <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-              {navItems.map((item, index) => (
-                <li
-                  key={index}
-                  className="flex items-center p-1 text-lg gap-x-2 text-slate-600 hover:text-red-500"
-                >
-                  <Link href={item.href} className="flex items-center">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <button className="bg-red-600 hover:bg-red-500 text-white px-8 py-2 rounded-md">
-                  Login
-                </button>
-              </li>
+              {navItems.map((item, index) => {
+                const isActive =
+                  item.href === "/"
+                    ? pathWithoutLocale === "" || pathWithoutLocale === "/"
+                    : pathWithoutLocale.startsWith(item.href);
+                return (
+                  <li key={index} className="flex items-center p-1 gap-x-2">
+                    <Link
+                      href={item.href}
+                      className={`flex items-center ${
+                        isActive ? "active-nav-link" : ""
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
+          </div>
+
+          <div className="hidden gap-10 lg:flex tracking-wider">
+            <Link href={"/login"}>Login</Link>
+            <Link href={"/register"}>Register</Link>
           </div>
         </div>
       </nav>
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 left-0 min-h-screen w-64 bg-slate-100 shadow-lg transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 min-h-screen w-70 bg-background shadow-lg transform transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         } lg:hidden z-[250]`}
       >
-        <div className="flex flex-row items-center border-b pb-4">
-          <Link
-            href="/"
-            className="cursor-pointer text-red-600 font-bold text-xl pt-4 ps-4"
-          >
-            NEXTNEWS
-          </Link>
+        <div className="flex flex-row items-center border-b pb-4 px-5 bg-gradient-to-r from-main-400 to-main text-white">
+          <div className={`flex flex-col`}>
+            <Link href="/" className="cursor-pointer pt-4">
+              <div className="w-[70px] h-[70px] bg-white rounded-full flex justify-center items-center">
+                <Image
+                  src={"/assets/logo.svg"}
+                  width={90}
+                  height={90}
+                  alt="Fenzo Logo"
+                />
+              </div>
+            </Link>
+            <strong className="tracking-wider text-2xl pt-5 font-[500]">
+              John Doe
+            </strong>
+            <sub className="tracking-wider text-lg font-light -translate-y-1">
+              Event Planner
+            </sub>
+          </div>
           <button
             onClick={toggleMobileMenu}
-            className="cursor-pointer absolute top-4 right-4 text-slate-600 hover:text-red-500"
+            className="cursor-pointer absolute top-4 right-4 text-background"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -115,26 +154,40 @@ export default function Navbar() {
           </button>
         </div>
         <ul className="flex flex-col h-full gap-4 p-4">
-          {navItems.map((item, index) => (
-            <li
-              key={index}
-              className="flex items-center p-1 text-lg gap-x-2 text-slate-600 hover:text-red-500"
-            >
-              <Link
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                }}
-                href={item.href}
-                className="flex items-center"
+          {navItems.map((item, index) => {
+            const isActive =
+              item.href === "/"
+                ? pathWithoutLocale === "" || pathWithoutLocale === "/"
+                : pathWithoutLocale.startsWith(item.href);
+            return (
+              <li
+                key={index}
+                className={`flex items-center p-1 gap-x-2 ${azeretMono.className} tracking-wide`}
               >
-                {item.name}
-              </Link>
-            </li>
-          ))}
-          <li className="mt-4">
-            <button className="bg-red-600 text-white px-8 py-2 rounded-md hover:bg-red-500">
-              Login
-            </button>
+                <Link
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                  }}
+                  href={item.href}
+                  className={`flex items-center ${
+                    isActive ? "active-nav-link" : ""
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            );
+          })}
+          <hr className="border-gray-300 my-3"/>
+          <li
+            className={`flex items-center p-1 gap-x-2 ${azeretMono.className} tracking-wide`}
+          >
+            <Link href={"/login"}>Login</Link>
+          </li>
+          <li
+            className={`flex items-center p-1 gap-x-2 ${azeretMono.className} tracking-wide`}
+          >
+            <Link href={"/register"}>Register</Link>
           </li>
         </ul>
       </div>

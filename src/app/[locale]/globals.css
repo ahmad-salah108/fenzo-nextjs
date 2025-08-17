@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+@theme {
+  --color-main-light: #F1F3F1;
+  --color-main: #DBB79B;
+  --color-main-400: #e9d4c3;
+  --color-background: #fafcfb
+}
+
+html{
+  font-size: 14px;
+}
+
+.active-nav-link{
+  position: relative;
+  color: theme(--color-main);
+}
+
+.active-nav-link::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 100vh;
+  width: 16px;
+  height: 2px;
+  background-color: theme(--color-main);
+  transform: translateX(-7);
+}

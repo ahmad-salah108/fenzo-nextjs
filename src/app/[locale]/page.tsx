@@ -1,14 +1,12 @@
 import {useTranslations} from 'next-intl';
-import {Link} from '@/i18n/navigation';
-import { azeretMono } from './layout';
 import Navbar from './_components/Navbar';
 
 export default function HomePage() {
-  const t = useTranslations('HomePage');
+  const t = useTranslations();
   return (
     <div>
-      <Navbar/>
-      شسيشسيشيس
+      
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, autem.
     </div>
   );
 }

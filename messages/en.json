@@ -1,5 +1,7 @@
 {
-  "title": "Hello world!",
-  "about": "Go to the about page",
-  "description": "This is description"
+  "home": "Home",
+  "designs": "Designs",
+  "myOrders": "My Orders",
+  "contactUs": "Contact us",
+  "about": "About"
 }

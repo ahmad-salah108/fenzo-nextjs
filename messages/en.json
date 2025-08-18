@@ -9,5 +9,11 @@
   "party": "Party",
   "graduation": "Graduation",
   "weddings": "Weddings",
-  "design_your_event": "Design Your Event"
+  "design_your_event": "Design Your Event",
+  "select_date": "Select Date",
+  "event_date": "Event Date",
+  "event_type": "Event Type",
+  "select_event_type": "Select Event Type",
+  "place": "Place",
+  "select_event_place": "Select Event Place"
 }

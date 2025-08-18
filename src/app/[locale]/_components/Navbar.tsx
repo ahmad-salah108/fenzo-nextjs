@@ -39,10 +39,10 @@ export default function Navbar() {
           onClick={() => {
             setIsMobileMenuOpen(false);
           }}
-          className="fixed inset-0 z-[210] bg-black/50 lg:hidden"
+          className="fixed inset-0 z-[35] bg-black/50 lg:hidden"
         ></div>
       )}
-      <nav className="border-b-2 border-main block w-full max-w-screen px-4 mx-auto bg-main-light bg-opacity-90 sticky top-3 lg:px-8 backdrop-blur-lg backdrop-saturate-150 z-[200]">
+      <nav className="border-b-2 border-main block w-full max-w-screen px-4 mx-auto bg-main-light bg-opacity-90 sticky top-3 lg:px-8 backdrop-blur-lg backdrop-saturate-150 z-[30]">
         <div className="container flex flex-wrap items-center justify-between mx-auto tracking-wide py-1">
           <Link href="/" className="mr-4 block cursor-pointer">
             <Image
@@ -119,7 +119,7 @@ export default function Navbar() {
       <div
         className={`fixed top-0 left-0 min-h-screen w-70 bg-background shadow-lg transform transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:hidden z-[250]`}
+        } lg:hidden z-[40]`}
       >
         <div className="flex flex-row items-center border-b pb-4 px-5 bg-gradient-to-r from-main-400 to-main text-white">
           <div className={`flex flex-col`}>

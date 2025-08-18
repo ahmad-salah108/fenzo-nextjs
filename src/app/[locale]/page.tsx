@@ -6,6 +6,7 @@ import { azeretMono } from "../fonts";
 import Views from "./_components/Views";
 import Orders from "./_components/Orders";
 import Footer from "./_components/Footer";
+import { DialogEvent } from "./_components/DialogEvent";
 
 // Force this page to be static
 export const dynamic = "force-static";
@@ -84,19 +85,7 @@ export default async function Home() {
           <Orders />
         </div>
 
-        <button
-          // onClick={handleClickOpen}
-          className="w-fit mt-16 inline-flex items-center gap-2 rounded-full border border-[rgba(89,89,89,1)] 
-                   text-[rgba(89,89,89,1)] px-6 py-2 hover:bg-gray-100 cursor-pointer"
-        >
-          {t("design_your_event")}
-          <img
-            src="/assets/icons/arrow-filled.svg"
-            alt="arrow"
-            className={`w-7 ${locale === "ar" ? "rotate-180" : ""}`}
-          />
-        </button>
-        {/* <DialogEvent open={open} handleClose={handleClose} /> */}
+        <DialogEvent locale={locale} t={t} />
 
         <div className="mt-20 md:mt-auto mb-8">
           <Footer />

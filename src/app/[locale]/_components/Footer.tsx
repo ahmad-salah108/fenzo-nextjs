@@ -1,6 +1,9 @@
+import { azeretMono } from "@/app/fonts";
+import Link from "next/link";
+
 export default function Footer() {
   return (
-    <div>
+    <div className={`${azeretMono.className}`}>
       <hr className="mt-10 mb-4 border-t border-black/10" />
 
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -9,8 +12,8 @@ export default function Footer() {
         </p>
 
         <div className="flex gap-8">
-          <p className="text-[0.8rem] cursor-pointer">Privacy Policies</p>
-          <p className="text-[0.8rem] cursor-pointer">Terms and Conditions</p>
+          <Link href={"/"} className="text-[0.8rem] cursor-pointer">Privacy Policies</Link>
+          <Link href={"/"} className="text-[0.8rem] cursor-pointer">Terms and Conditions</Link>
         </div>
       </div>
     </div>

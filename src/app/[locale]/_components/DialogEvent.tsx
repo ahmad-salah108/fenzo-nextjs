@@ -1,5 +1,6 @@
 import { DatePicker } from "@/app/_components/DatePicker";
 import { SelectInput } from "@/app/_components/Select";
+import { azeretMono } from "@/app/fonts";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -39,14 +40,14 @@ export function DialogEvent({ locale, t }: Props) {
       <form>
         <DialogTrigger asChild>
           <button
-            className="w-fit mt-16 inline-flex items-center gap-2 rounded-full border border-[rgba(89,89,89,1)] 
-                   text-[rgba(89,89,89,1)] px-6 py-2 hover:bg-gray-100 cursor-pointer"
+            className={`w-fit mt-16 inline-flex items-center gap-2 rounded-full border border-[rgba(89,89,89,1)] 
+                   text-[rgba(89,89,89,1)] text-[0.9rem] px-6 py-3 hover:bg-gray-100 cursor-pointer ${azeretMono.className} uppercase`}
           >
             {t("design_your_event")}
             <img
               src="/assets/icons/arrow-filled.svg"
               alt="arrow"
-              className={`w-7 ${locale === "ar" ? "rotate-180" : ""}`}
+              className={`w-6 ${locale === "ar" ? "rotate-180" : ""}`}
             />
           </button>
         </DialogTrigger>
@@ -60,7 +61,7 @@ export function DialogEvent({ locale, t }: Props) {
               done.
             </DialogDescription>
           </DialogHeader>
-          <div className="grid gap-4">
+          <div className="grid gap-4 mt-3">
             <div className="grid gap-3">
               <Label className="text-muted-foreground">
                 {t("event_type")}*

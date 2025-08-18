@@ -31,7 +31,7 @@ export default async function Home() {
           priority
         />
       </div>
-      <div className="w-[90%] md:w-[65%] mt-4 mx-auto px-[2.1rem] flex flex-col">
+      <div className="w-[90%] md:w-[70%] mt-4 mx-auto px-[2.1rem] flex flex-col">
         <div className={`${azeretMono.className} relative`}>
           {/* Infinite Image in the background */}
           <img

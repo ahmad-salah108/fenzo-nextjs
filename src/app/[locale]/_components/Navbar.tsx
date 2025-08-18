@@ -27,8 +27,8 @@ export default function Navbar() {
   const navItems = [
     { name: t("home"), href: "/" },
     { name: t("designs"), href: "/designs" },
-    { name: t("myOrders"), href: "/my-orders" },
-    { name: t("contactUs"), href: "/contact-us" },
+    { name: t("my_orders"), href: "/my-orders" },
+    { name: t("contact_us"), href: "/contact-us" },
     { name: t("about"), href: "/about" },
   ];
 
@@ -94,7 +94,13 @@ export default function Navbar() {
                         isActive ? "active-nav-link" : ""
                       }`}
                     >
-                      {item.name}
+                      {item.href === "/about" ? (
+                        t.rich("about", {
+                          customDiv: (chunks) => <div>{chunks}</div>,
+                        })
+                      ) : (
+                        item.name
+                      )}
                     </Link>
                   </li>
                 );
@@ -173,7 +179,13 @@ export default function Navbar() {
                     isActive ? "active-nav-link" : ""
                   }`}
                 >
-                  {item.name}
+                  {item.href === "/about" ? (
+                    t.rich("about", {
+                      customDiv: (chunks) => <div>{chunks}</div>,
+                    })
+                  ) : (
+                    item.name
+                  )}
                 </Link>
               </li>
             );

@@ -1,23 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --color-main-light: #F1F3F1;
-  --color-main: #DBB79B;
+  --color-main-light: #f1f3f1;
+  --color-main: #dbb79b;
   --color-main-400: #e9d4c3;
-  --color-background: #fafcfb
+  --color-background: #fafcfb;
 }
 
-html{
+html {
   font-size: 14px;
 }
 
-.active-nav-link{
+.active-nav-link {
   position: relative;
   color: theme(--color-main);
 }
 
-.active-nav-link::after{
-  content: '';
+.active-nav-link::after {
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -26,4 +26,149 @@ html{
   height: 2px;
   background-color: theme(--color-main);
   transform: translateX(-7);
+}
+
+.slide-word-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-word {
+  color: rgba(219, 183, 155, 1);
+  position: absolute;
+  animation: slide-word-sm 7s infinite ease-in-out;
+}
+
+@media (min-width: 768px) {
+  .slide-word {
+    color: rgba(219, 183, 155, 1);
+    position: absolute;
+    animation: slide-word 7s infinite ease-in-out;
+  }
+}
+
+@keyframes slide-word {
+  0%{
+    top: 0
+  }
+  6.25%{
+    top: 0
+  }
+  8.25%{
+    top: 0.5rem
+  }
+  12.5%{
+    top: -4rem
+  }
+  18.75%{
+    top: -4rem
+  }
+  25%{
+    top: -4rem
+  }
+  31.25%{
+    top: -4rem
+  }
+  33.25%{
+    top: -3.5rem
+  }
+  39.5%{
+    top: -8rem
+  }
+  45.75%{
+    top: -8rem
+  }
+  52%{
+    top: -8rem
+  }
+  58.25%{
+    top: -8rem
+  }
+  60.25%{
+    top: -7.5rem
+  }
+  66.5%{
+    top: -12rem
+  }
+  72.75%{
+    top: -12rem
+  }
+  79%{
+    top: -12rem
+  }
+  85.25%{
+    top: -12rem
+  }
+  87.25%{
+    top: -12.5rem
+  }
+  93.5%{
+    top: 0
+  }
+  100%{
+    top: 0
+  }
+}
+
+@keyframes slide-word-sm {
+  0% {
+    top: 0;
+  }
+  6.25% {
+    top: 0;
+  }
+  8.25% {
+    top: 0.5rem;
+  }
+  12.5% {
+    top: -3rem;
+  }
+  18.75% {
+    top: -3rem;
+  }
+  25% {
+    top: -3rem;
+  }
+  31.25% {
+    top: -3rem;
+  }
+  33.25% {
+    top: -2.5rem;
+  }
+  39.5% {
+    top: -6rem;
+  }
+  45.75% {
+    top: -6rem;
+  }
+  52% {
+    top: -6rem;
+  }
+  58.25% {
+    top: -6rem;
+  }
+  60.25% {
+    top: -5.5rem;
+  }
+  66.5% {
+    top: -9rem;
+  }
+  72.75% {
+    top: -9rem;
+  }
+  79% {
+    top: -9rem;
+  }
+  85.25% {
+    top: -9rem;
+  }
+  87.25% {
+    top: -9.5rem;
+  }
+  93.5% {
+    top: 0;
+  }
+  100% {
+    top: 0;
+  }
 }

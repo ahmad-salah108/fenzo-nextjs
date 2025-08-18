@@ -1,7 +1,13 @@
 {
   "home": "Home",
   "designs": "Designs",
-  "myOrders": "My Orders",
-  "contactUs": "Contact us",
-  "about": "About"
+  "my_orders": "My Orders",
+  "contact_us": "Contact us",
+  "about": "About",
+  "your": "Your",
+  "special_event": "Special Event",
+  "party": "Party",
+  "graduation": "Graduation",
+  "weddings": "Weddings",
+  "design_your_event": "Design Your Event"
 }

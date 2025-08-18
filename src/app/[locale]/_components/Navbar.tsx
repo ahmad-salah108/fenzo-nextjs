@@ -13,6 +13,7 @@ export default function Navbar() {
   };
 
   const t = useTranslations();
+  const t_auth = useTranslations("Auth");
   const pathname = usePathname();
 
   const getLocaleFromPathname = (path: string) => {
@@ -109,8 +110,8 @@ export default function Navbar() {
           </div>
 
           <div className="hidden gap-10 lg:flex tracking-wider">
-            <Link href={"/login"}>Login</Link>
-            <Link href={"/register"}>Register</Link>
+            <Link href={"/login"}>{t_auth("login")}</Link>
+            <Link href={"/register"}>{t_auth("register")}</Link>
           </div>
         </div>
       </nav>
@@ -194,12 +195,12 @@ export default function Navbar() {
           <li
             className={`flex items-center p-1 gap-x-2 ${azeretMono.className} tracking-wide`}
           >
-            <Link href={"/login"}>Login</Link>
+            <Link href={"/login"}>{t_auth("login")}</Link>
           </li>
           <li
             className={`flex items-center p-1 gap-x-2 ${azeretMono.className} tracking-wide`}
           >
-            <Link href={"/register"}>Register</Link>
+            <Link href={"/register"}>{t_auth("register")}</Link>
           </li>
         </ul>
       </div>

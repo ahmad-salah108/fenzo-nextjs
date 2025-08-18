@@ -56,32 +56,34 @@ export function DialogEvent({ locale, t }: Props) {
             <DialogTitle className="font-bold text-3xl md:text-4xl uppercase text-start">
               Describe your <span className="text-main">Event</span>
             </DialogTitle>
-            <DialogDescription className="text-[1rem] text-start">
+            <DialogDescription className="text-sm text-start">
               Make changes to your profile here. Click save when you&apos;re
               done.
             </DialogDescription>
           </DialogHeader>
-          <div className="grid gap-4 mt-3">
+          <div className="grid gap-7 mt-3">
             <div className="grid gap-3">
               <Label className="text-muted-foreground">
-                {t("event_type")}*
+                {t("event_type")}
               </Label>
               <SelectInput
                 placeholder={t("select_event_type")}
                 options={eventTypes}
+                width="w-[200px]"
               />
             </div>
             <div className="grid gap-3">
               <Label className="text-muted-foreground">
-                {t("event_date")}*
+                {t("event_date")}
               </Label>
-              <DatePicker />
+              <DatePicker width="w-[200px]"/>
             </div>
             <div className="grid gap-3">
-              <Label className="text-muted-foreground">{t("place")}*</Label>
+              <Label className="text-muted-foreground">{t("place")}</Label>
               <SelectInput
                 placeholder={t("select_event_place")}
                 options={eventTypes}
+                width="w-[200px]"
               />
             </div>
           </div>

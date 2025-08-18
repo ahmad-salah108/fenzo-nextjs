@@ -11,12 +11,13 @@ import {
 type Props = {
   placeholder: string;
   options: { value: string; title: string }[];
+  width?: string
 };
 
-export function SelectInput({ placeholder, options }: Props) {
+export function SelectInput({ placeholder, options, width }: Props) {
   return (
     <Select>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className={`${width ? width : "w-[180px]"}`}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>

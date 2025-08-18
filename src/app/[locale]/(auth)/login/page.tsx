@@ -1,12 +1,8 @@
 import { routing } from "@/i18n/routing";
-import { getTranslations } from "next-intl/server";
-import { getLocale } from "next-intl/server";
 import Image from "next/image";
-import { aleo, azeretMono } from "../fonts";
-import Views from "./_components/Views";
-import Orders from "./_components/Orders";
-import Footer from "./_components/Footer";
-import { DialogEvent } from "./_components/DialogEvent";
+import { getLocale, getTranslations } from "next-intl/server";
+import Footer from "@/app/[locale]/_components/Footer";
+import { FormLogin } from "./_components/FormLogin";
 
 // Force this page to be static
 export const dynamic = "force-static";
@@ -16,15 +12,15 @@ export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function Home() {
+export default async function LoginPage() {
   const t = await getTranslations();
   const locale = await getLocale();
 
   return (
     <div className="flex gap-20">
-      <div className="hidden md:block relative min-h-[calc(100vh-71.03px)] w-1/4">
+      <div className="hidden md:block min-h-[calc(100vh-71.03px)] relative w-1/4">
         <Image
-          src="/assets/images/home.png"
+          src="/assets/images/login.png"
           alt="home image"
           style={{ objectFit: "cover" }}
           fill
@@ -33,28 +29,7 @@ export default async function Home() {
       </div>
       <div className="w-[90%] md:w-[70%] mt-4 mx-auto px-[2.1rem] flex flex-col">
         <div className={`relative`}>
-          {/* Infinite Image in the background */}
-          <img
-            src="/assets/icons/infinite.svg"
-            alt="infinite"
-            className={`absolute opacity-5 top-0 ${
-              locale === "ar" ? "left-0" : "right-0"
-            }`}
-          />
-
-          {/* Views Card lg screens */}
-
-          <div className="hidden lg:block absolute top-20 right-0">
-            <Views />
-          </div>
-
-          {/* Orders Card lg screens */}
-
-          <div className="hidden lg:block absolute -bottom-20 right-0">
-            <Orders />
-          </div>
-
-          <p className="text-[2rem] md:text-[3rem] font-extrabold leading-[3rem] md:leading-[4rem] uppercase mt-16">
+          <p className="text-[2rem] md:text-[3rem] font-extrabold leading-[3rem] md:leading-[4rem] uppercase mt-5">
             {locale === "ar" ? (
               "أفضل مكان"
             ) : (
@@ -71,21 +46,16 @@ export default async function Home() {
             </span>
           </p>
           <p
-            className={`mt-5 text-muted-foreground text-sm leading-7 max-w-[40rem]`}
+            className={`mt-5 text-muted-foreground text-sm leading-7 xl:max-w-2/3`}
           >
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s.
           </p>
         </div>
-        {/* Views & Orders Cards non lg screens */}
-        <div className="flex lg:hidden flex-wrap gap-12 mt-8">
-          <Views />
-          <Orders />
+        <div className="mt-10">
+          <FormLogin />
         </div>
-
-        <DialogEvent locale={locale} t={t} />
-
         <div className="mt-20 md:mt-auto mb-8">
           <Footer />
         </div>

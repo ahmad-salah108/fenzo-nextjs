@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/popover"
 import { useTranslations } from "next-intl"
 
-export function DatePicker() {
+export function DatePicker({width}: {width?: string}) {
   const [open, setOpen] = React.useState(false)
   const [date, setDate] = React.useState<Date | undefined>(undefined)
   const t = useTranslations();
@@ -28,7 +28,7 @@ export function DatePicker() {
           <Button
             variant="outline"
             id="date"
-            className="w-48 justify-between font-normal text-muted-foreground"
+            className={`${width ? width : "w-48"} justify-between font-normal text-muted-foreground`}
           >
             {date ? date.toLocaleDateString() : t("select_date")}
             <ChevronDownIcon />

@@ -3,7 +3,7 @@ import "./globals.css";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { aleo } from "../fonts";
+import { aleo, azeretMono } from "../fonts";
 import Navbar from "./_components/Navbar";
 
 export const metadata: Metadata = {
@@ -24,8 +24,8 @@ export default async function RootLayout({
     notFound();
   }
   return (
-    <html lang={locale} className={aleo.className}>
-      <body className={`antialiased ${aleo.className} bg-background`}>
+    <html lang={locale} className={azeretMono.className}>
+      <body className={`antialiased ${azeretMono.className} bg-background`}>
         <NextIntlClientProvider>
           <Navbar />
           {children}

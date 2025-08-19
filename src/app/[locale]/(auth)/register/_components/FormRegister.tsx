@@ -30,12 +30,12 @@ import React, { useRef } from "react";
 function createFormSchema(t: ReturnType<typeof useTranslations>) {
   const schema = z
     .object({
-      profileImage: z
-        .instanceof(File)
-        .optional()
-        .refine((file) => !file || file.type.startsWith("image/"), {
-          message: t("profile_image_format"),
-        }),
+      // profileImage: z
+      //   .instanceof(File)
+      //   .optional()
+      //   .refine((file) => !file || file.type.startsWith("image/"), {
+      //     message: t("profile_image_format"),
+      //   }),
       fullName: z
         .string()
         .min(1, { message: t("full_name_required") })
@@ -87,7 +87,7 @@ export function FormRegister() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      profileImage: undefined as unknown as File | undefined,
+      // profileImage: undefined as unknown as File | undefined,
       fullName: "",
       email: "",
       phoneNumber: "",
@@ -97,7 +97,7 @@ export function FormRegister() {
     },
   });
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  // const fileInputRef = useRef<HTMLInputElement>(null);
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast("You submitted the following values", {
@@ -115,7 +115,7 @@ export function FormRegister() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full sm:w-2/3 space-y-6 flex flex-col gap-3"
       >
-        <FormField
+        {/* <FormField
           control={form.control}
           name="profileImage"
           render={({ field }) => (
@@ -170,7 +170,7 @@ export function FormRegister() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <FormField
           control={form.control}
           name="fullName"

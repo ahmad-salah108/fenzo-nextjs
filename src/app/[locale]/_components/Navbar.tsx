@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { azeretMono } from "@/app/fonts";
 import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -27,7 +28,7 @@ export default function Navbar() {
   // Navigation items array
   const navItems = [
     { name: t("home"), href: "/" },
-    { name: t("designs"), href: "/designs" },
+    { name: t("services"), href: "/services" },
     { name: t("my_orders"), href: "/my-orders" },
     { name: t("contact_us"), href: "/contact-us" },
     { name: t("about"), href: "/about" },
@@ -109,9 +110,11 @@ export default function Navbar() {
             </ul>
           </div>
 
-          <div className="hidden gap-10 lg:flex tracking-wider">
+          <div className="hidden gap-10 lg:flex tracking-wider justify-center items-center">
             <Link href={"/login"}>{t_auth("login")}</Link>
-            <Link href={"/register"}>{t_auth("register")}</Link>
+            <Button className="bg-main hover:bg-main-100">
+              <Link href={"/register"}>{t_auth("register")}</Link>
+            </Button>
           </div>
         </div>
       </nav>

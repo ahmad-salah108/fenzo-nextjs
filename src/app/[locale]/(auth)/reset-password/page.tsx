@@ -31,7 +31,8 @@ export default async function LoginPage() {
       <div className="w-[90%] md:w-[70%] mt-4 mx-auto px-[2.1rem] flex flex-col">
         <div>
           <p className="text-[2rem] md:text-[3rem] font-extrabold leading-[3rem] md:leading-[4rem] uppercase mt-5">
-            {t_auth("reset")} <span className="text-main">{t_auth("password")}</span>
+            {t_auth("reset")}{" "}
+            <span className="text-main">{t_auth("password")}</span>
           </p>
           <p
             className={`mt-5 text-muted-foreground text-sm leading-7 xl:max-w-2/3`}
@@ -42,9 +43,8 @@ export default async function LoginPage() {
         <div className="mt-10">
           <FormResetPassword />
         </div>
-        <div className="mt-20 md:mt-auto mb-8">
-          <Footer />
-        </div>
+
+        <Footer />
       </div>
     </div>
   );

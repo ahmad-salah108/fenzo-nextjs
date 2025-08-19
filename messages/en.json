@@ -17,6 +17,7 @@
   "place": "Place",
   "select_event_place": "Select Event Place",
   "optional": "Optional",
+  "search": "Search",
   "Auth": {
     "email": "Email",
     "email_required": "Email is required.",

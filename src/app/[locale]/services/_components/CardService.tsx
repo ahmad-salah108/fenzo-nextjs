@@ -4,10 +4,10 @@ import React from "react";
 
 function CardService() {
   return (
-    <div className="w-[250px] bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+    <div className="w-[250px] mx-auto bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
       <div>
         <Image
-          src="/assets/images/card-image1.png"
+          src="/assets/images/card-image2.png"
           alt="Card Image"
           width={250}
           height={100}

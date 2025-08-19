@@ -1,9 +1,8 @@
-import { azeretMono } from "@/app/fonts";
 import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className={`${azeretMono.className}`}>
+    <div className={`mt-20 md:mt-auto mb-8`}>
       <hr className="mt-10 mb-4 border-t border-black/10" />
 
       <div className="flex flex-wrap items-center justify-between gap-4">

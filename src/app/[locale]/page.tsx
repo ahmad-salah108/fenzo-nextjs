@@ -86,9 +86,7 @@ export default async function Home() {
 
         <DialogEvent locale={locale} t={t} />
 
-        <div className="mt-20 md:mt-auto mb-8">
-          <Footer />
-        </div>
+        <Footer />
       </div>
     </div>
   );

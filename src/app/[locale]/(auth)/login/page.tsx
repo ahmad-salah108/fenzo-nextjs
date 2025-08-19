@@ -56,9 +56,8 @@ export default async function LoginPage() {
         <div className="mt-10">
           <FormLogin />
         </div>
-        <div className="mt-20 md:mt-auto mb-8">
-          <Footer />
-        </div>
+
+        <Footer />
       </div>
     </div>
   );

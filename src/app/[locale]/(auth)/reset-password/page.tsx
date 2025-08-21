@@ -1,6 +1,6 @@
 import { routing } from "@/i18n/routing";
 import Image from "next/image";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Footer from "@/app/[locale]/_components/Footer";
 import { FormResetPassword } from "./_components/FormResetPassword";
 
@@ -12,10 +12,15 @@ export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function LoginPage() {
-  const t = await getTranslations();
-  const t_auth = await getTranslations("Auth");
-  const locale = await getLocale();
+export default async function LoginPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const { locale } = params;
+  // Enable static rendering
+  setRequestLocale(locale);
+  const tAuth = await getTranslations("Auth");
 
   return (
     <div className="flex gap-20">
@@ -31,13 +36,13 @@ export default async function LoginPage() {
       <div className="w-[90%] md:w-[70%] mt-4 mx-auto px-[2.1rem] flex flex-col">
         <div>
           <p className="text-[2rem] md:text-[3rem] font-extrabold leading-[3rem] md:leading-[4rem] uppercase mt-5">
-            {t_auth("reset")}{" "}
-            <span className="text-main">{t_auth("password")}</span>
+            {tAuth("reset")}{" "}
+            <span className="text-main">{tAuth("password")}</span>
           </p>
           <p
             className={`mt-5 text-muted-foreground text-sm leading-7 xl:max-w-2/3`}
           >
-            {t_auth("reset_password_desc")}
+            {tAuth("reset_password_desc")}
           </p>
         </div>
         <div className="mt-10">

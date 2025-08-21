@@ -10,7 +10,7 @@ function ServicesPage() {
   return (
     <div className="container lg:w-2/3 mx-auto px-7 pt-16">
       <Input type="text" placeholder={t("search")} className="py-6" />
-      <p className="my-10">All Services</p>
+      <p className="my-10">{t("all_services")}</p>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
         <CardService />
         <CardService />

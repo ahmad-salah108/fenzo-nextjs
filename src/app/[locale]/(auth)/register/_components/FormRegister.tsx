@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -27,8 +26,10 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React, { useRef } from "react";
 
-function createFormSchema(t: ReturnType<typeof useTranslations>) {
-  const schema = z
+export function FormRegister() {
+  const tAuth = useTranslations("Auth");
+
+  const FormSchema = z
     .object({
       // profileImage: z
       //   .instanceof(File)
@@ -38,52 +39,44 @@ function createFormSchema(t: ReturnType<typeof useTranslations>) {
       //   }),
       fullName: z
         .string()
-        .min(1, { message: t("full_name_required") })
-        .max(100, { message: t("full_name_max") })
+        .min(1, { message: tAuth("full_name_required") })
+        .max(100, { message: tAuth("full_name_max") })
         .refine((value) => /^[\p{L} .'-]+$/u.test(value), {
-          message: t("full_name_valid"),
+          message: tAuth("full_name_valid"),
         }),
       email: z
         .string()
-        .min(1, { message: t("email_required") })
+        .min(1, { message: tAuth("email_required") })
         .refine((value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value), {
-          message: t("email_valid"),
+          message: tAuth("email_valid"),
         }),
       phoneNumber: z
         .string()
-        .min(1, { message: t("phone_number_required") })
+        .min(1, { message: tAuth("phone_number_required") })
         .refine((value) => /^\+?[0-9\s\-()]{7,20}$/.test(value), {
-          message: t("phone_number_valid"),
+          message: tAuth("phone_number_valid"),
         }),
-      country: z.string().min(1, { message: t("country_required") }),
+      country: z.string().min(1, { message: tAuth("country_required") }),
       password: z
         .string()
-        .min(8, { message: t("password_min") })
+        .min(8, { message: tAuth("password_min") })
         .refine(
           (value) =>
             /[A-Z]/.test(value) &&
             /[a-z]/.test(value) &&
             /[^A-Za-z0-9]/.test(value),
           {
-            message: t("password_valid"),
+            message: tAuth("password_valid"),
           }
         ),
       confirmPassword: z
         .string()
-        .min(1, { message: t("confirm_password_required") }),
+        .min(1, { message: tAuth("confirm_password_required") }),
     })
     .refine((data) => data.confirmPassword === data.password, {
       path: ["confirmPassword"],
-      message: t("confirm_password_match"),
+      message: tAuth("confirm_password_match"),
     });
-
-  return schema;
-}
-
-export function FormRegister() {
-  const t_auth = useTranslations("Auth");
-  const t = useTranslations();
-  const FormSchema = createFormSchema(t_auth);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -121,7 +114,7 @@ export function FormRegister() {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-muted-foreground">
-                {t_auth("profile_image")}{" "}
+                {tAuth("profile_image")}{" "}
                 <span className="text-xs text-muted-foreground">
                   ({t("optional")})
                 </span>
@@ -162,7 +155,7 @@ export function FormRegister() {
                       onClick={() => fileInputRef.current?.click()}
                       className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm shadow bg-main text-white hover:bg-main-100 cursor-pointer uppercase tracking-wide"
                     >
-                      {t_auth("upload_photo")}
+                      {tAuth("upload_photo")}
                     </button>
                   </>
                 )}
@@ -177,10 +170,10 @@ export function FormRegister() {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-muted-foreground">
-                {t_auth("full_name")}
+                {tAuth("full_name")}
               </FormLabel>
               <FormControl>
-                <Input placeholder={t_auth("full_name")} {...field} />
+                <Input placeholder={tAuth("full_name")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -192,10 +185,10 @@ export function FormRegister() {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-muted-foreground">
-                {t_auth("email")}
+                {tAuth("email")}
               </FormLabel>
               <FormControl>
-                <Input placeholder={t_auth("email")} {...field} />
+                <Input placeholder={tAuth("email")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -207,11 +200,11 @@ export function FormRegister() {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-muted-foreground">
-                {t_auth("phone_number")}
+                {tAuth("phone_number")}
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder={t_auth("phone_number")}
+                  placeholder={tAuth("phone_number")}
                   type="tel"
                   {...field}
                 />
@@ -226,12 +219,12 @@ export function FormRegister() {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-muted-foreground">
-                {t_auth("country")}
+                {tAuth("country")}
               </FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder={t_auth("country")} />
+                    <SelectValue placeholder={tAuth("country")} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -253,11 +246,11 @@ export function FormRegister() {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-muted-foreground">
-                {t_auth("password")}
+                {tAuth("password")}
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder={t_auth("password")}
+                  placeholder={tAuth("password")}
                   type="password"
                   {...field}
                 />
@@ -272,11 +265,11 @@ export function FormRegister() {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-muted-foreground">
-                {t_auth("confirm_password")}
+                {tAuth("confirm_password")}
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder={t_auth("confirm_password")}
+                  placeholder={tAuth("confirm_password")}
                   type="password"
                   {...field}
                 />
@@ -289,7 +282,7 @@ export function FormRegister() {
           type="submit"
           className="bg-main hover:bg-main-100 ms-auto flex justify-center items-center uppercase text-[0.9rem] tracking-widest p-5"
         >
-          {t_auth("register")}
+          {tAuth("register")}
         </Button>
       </form>
     </Form>

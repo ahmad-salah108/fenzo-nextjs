@@ -3,7 +3,6 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { azeretMono } from "@/app/fonts";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
@@ -14,7 +13,7 @@ export default function Navbar() {
   };
 
   const t = useTranslations();
-  const t_auth = useTranslations("Auth");
+  const tAuth = useTranslations("Auth");
   const pathname = usePathname();
 
   const getLocaleFromPathname = (path: string) => {
@@ -81,7 +80,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className={`hidden lg:block ${azeretMono.className}`}>
+          <div className={`hidden lg:block`}>
             <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
               {navItems.map((item, index) => {
                 const isActive =
@@ -111,9 +110,9 @@ export default function Navbar() {
           </div>
 
           <div className="hidden gap-10 lg:flex tracking-wider justify-center items-center">
-            <Link href={"/login"}>{t_auth("login")}</Link>
+            <Link href={"/login"}>{tAuth("login")}</Link>
             <Button className="bg-main hover:bg-main-100">
-              <Link href={"/register"}>{t_auth("register")}</Link>
+              <Link href={"/register"}>{tAuth("register")}</Link>
             </Button>
           </div>
         </div>
@@ -172,7 +171,7 @@ export default function Navbar() {
             return (
               <li
                 key={index}
-                className={`flex items-center p-1 gap-x-2 ${azeretMono.className} tracking-wide`}
+                className={`flex items-center p-1 gap-x-2 tracking-wide`}
               >
                 <Link
                   onClick={() => {
@@ -196,14 +195,14 @@ export default function Navbar() {
           })}
           <hr className="border-gray-300 my-3"/>
           <li
-            className={`flex items-center p-1 gap-x-2 ${azeretMono.className} tracking-wide`}
+            className={`flex items-center p-1 gap-x-2 tracking-wide`}
           >
-            <Link href={"/login"}>{t_auth("login")}</Link>
+            <Link href={"/login"}>{tAuth("login")}</Link>
           </li>
           <li
-            className={`flex items-center p-1 gap-x-2 ${azeretMono.className} tracking-wide`}
+            className={`flex items-center p-1 gap-x-2 tracking-wide`}
           >
-            <Link href={"/register"}>{t_auth("register")}</Link>
+            <Link href={"/register"}>{tAuth("register")}</Link>
           </li>
         </ul>
       </div>

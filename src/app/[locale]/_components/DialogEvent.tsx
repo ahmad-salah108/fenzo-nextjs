@@ -1,6 +1,7 @@
 import { DatePicker } from "@/app/_components/DatePicker";
 import { SelectInput } from "@/app/_components/Select";
-import { azeretMono } from "@/app/fonts";
+import { azeretMono, cairo } from "@/app/fonts";
+import { getFontClassName } from "@/app/utils/font-utils";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -13,11 +14,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-
-type Props = {
-  locale: string;
-  t: (key: string, values?: Record<string, any>) => string;
-};
+import { getLocale, getTranslations } from "next-intl/server";
+import { getLangDir } from "rtl-detect";
 
 const eventTypes = [
   {
@@ -34,20 +32,25 @@ const eventTypes = [
   },
 ];
 
-export function DialogEvent({ locale, t }: Props) {
+export async function DialogEvent({params}:{params: {locale: string}}) {
+  const {locale} = params;
+  const t = await getTranslations();
+  const fontClassName = getFontClassName(locale);
+  const direction = getLangDir(locale);
+
   return (
     <Dialog>
       <form>
         <DialogTrigger asChild>
           <button
             className={`w-fit mt-16 inline-flex items-center gap-2 rounded-full border border-[rgba(89,89,89,1)] 
-                   text-[rgba(89,89,89,1)] text-[0.9rem] px-6 py-3 hover:bg-gray-100 cursor-pointer ${azeretMono.className} uppercase`}
+                   text-[rgba(89,89,89,1)] text-[0.9rem] px-6 py-3 hover:bg-gray-100 cursor-pointer ${fontClassName} uppercase`}
           >
             {t("design_your_event")}
             <img
               src="/assets/icons/arrow-filled.svg"
               alt="arrow"
-              className={`w-6 ${locale === "ar" ? "rotate-180" : ""}`}
+              className={`w-6 ${direction === "rtl" ? "rotate-180" : ""}`}
             />
           </button>
         </DialogTrigger>

@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -19,8 +18,9 @@ import { Input } from "@/components/ui/input";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
-function createFormSchema(t: ReturnType<typeof useTranslations>) {
-  return z.object({
+export function FormLogin() {
+  const t = useTranslations("Auth");
+  const FormSchema = z.object({
     email: z
       .string()
       .min(1, { message: t("email_required") })
@@ -43,11 +43,6 @@ function createFormSchema(t: ReturnType<typeof useTranslations>) {
         }
       ),
   });
-}
-
-export function FormLogin() {
-  const t = useTranslations("Auth");
-  const FormSchema = createFormSchema(t);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {

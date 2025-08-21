@@ -1,6 +1,6 @@
 import { routing } from "@/i18n/routing";
 import Image from "next/image";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Footer from "@/app/[locale]/_components/Footer";
 import { FormLogin } from "./_components/FormLogin";
 
@@ -12,9 +12,15 @@ export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function LoginPage() {
+export default async function LoginPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const { locale } = params;
+  // Enable static rendering
+  setRequestLocale(locale);
   const t = await getTranslations();
-  const locale = await getLocale();
 
   return (
     <div className="flex gap-20">

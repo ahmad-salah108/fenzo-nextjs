@@ -23,7 +23,7 @@ function CardService() {
           Wedding Service
         </h1>
         <p className="text-gray-400 text-xs text-center">Service Supplier</p>
-        <p className="text-sm text-center pt-5 text-muted-foreground font-light leading-6">
+        <p className="text-sm text-center pt-5 text-muted-foreground font-light leading-6 line-clamp-5">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s.

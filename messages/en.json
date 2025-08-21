@@ -22,6 +22,7 @@
   "all_services": "All Services",
   "go_to_seller": "Go to Seller's Page",
   "go_to_service": "Go to Services's Page",
+  "sellers_for_service": "Sellers for this service",
   "Auth": {
     "email": "Email",
     "email_required": "Email is required.",

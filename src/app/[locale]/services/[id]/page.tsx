@@ -1,12 +1,14 @@
 import React from "react";
 import CardSeller from "./_components/CardSeller";
 import { Input } from "@/components/ui/input";
-import { useTranslations } from "next-intl";
 import Footer from "../../_components/Footer";
 import { BreadcrumbDemo } from "@/app/_components/Breadcrumb";
+import { CarouselWithDots } from "./_components/CarouselService";
+import { getTranslations } from "next-intl/server";
+import { PaginationDemo } from "./_components/Pagination";
 
-function ServicePage() {
-  const t = useTranslations();
+async function ServicePage() {
+  const t = await getTranslations();
   const links = [
     {
       title: t("services"),
@@ -32,15 +34,21 @@ function ServicePage() {
           since the 1500s.
         </p>
       </div>
-      <Input type="text" placeholder={t("search")} className="py-6 mt-16" />
-      <p className="my-10">{t("all_sellers")}</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+      <div className="pt-10">
+        <CarouselWithDots />
+      </div>
+      <p className="mt-16 mb-7 font-semibold">{t("sellers_for_service")}</p>
+      <Input type="text" placeholder={t("search")} className="py-6 mb-10 rounded-[5px]" />
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-10">
         <CardSeller />
         <CardSeller />
         <CardSeller />
         <CardSeller />
         <CardSeller />
         <CardSeller />
+      </div>
+      <div className="mt-20">
+        <PaginationDemo />
       </div>
       <div className="pt-16">
         <Footer />

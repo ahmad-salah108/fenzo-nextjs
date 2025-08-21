@@ -6,13 +6,13 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-function CardService() {
-  const t = useTranslations();
+async function CardService() {
+  const t = await getTranslations();
   
   return (
-    <div className="w-[250px] mx-auto bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+    <div className="w-[250px] mx-auto bg-white rounded-[5px] overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
       <div>
         <Image
           src="/assets/images/card-image2.png"

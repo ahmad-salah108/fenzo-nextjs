@@ -2,10 +2,10 @@ import React from "react";
 import CardService from "./_components/CardService";
 import Footer from "../_components/Footer";
 import { Input } from "@/components/ui/input";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-function ServicesPage() {
-  const t = useTranslations();
+async function ServicesPage() {
+  const t = await getTranslations();
 
   return (
     <div className="container lg:w-2/3 mx-auto px-7 pt-16">

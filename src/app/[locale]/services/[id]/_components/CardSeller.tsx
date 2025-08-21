@@ -32,7 +32,7 @@ function CardSeller() {
               </Link>
             </TooltipTrigger>
             <TooltipContent>
-              <p>{t("Go to Seller's Page")}</p>
+              <p>{t("go_to_seller")}</p>
             </TooltipContent>
           </Tooltip>
         </div>

@@ -20,6 +20,8 @@
   "search": "Search",
   "all_sellers": "All Sellers",
   "all_services": "All Services",
+  "go_to_seller": "Go to Seller's Page",
+  "go_to_service": "Go to Services's Page",
   "Auth": {
     "email": "Email",
     "email_required": "Email is required.",

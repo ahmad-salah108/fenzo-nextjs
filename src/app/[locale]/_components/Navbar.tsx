@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { getLangDir } from "rtl-detect";
 
-export default function Navbar() {
+export default function Navbar({ locale }: { locale: string }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -15,14 +16,8 @@ export default function Navbar() {
   const t = useTranslations();
   const tAuth = useTranslations("Auth");
   const pathname = usePathname();
-
-  const getLocaleFromPathname = (path: string) => {
-    const parts = path.split("/").filter(Boolean);
-    return parts.length > 0 ? parts[0] : "";
-  };
-
-  const currentLocale = getLocaleFromPathname(pathname);
-  const pathWithoutLocale = pathname.replace(`/${currentLocale}`, "");
+  const pathWithoutLocale = pathname.replace(`/${locale}`, "");
+  const direction = getLangDir(locale);
 
   // Navigation items array
   const navItems = [
@@ -92,16 +87,14 @@ export default function Navbar() {
                     <Link
                       href={item.href}
                       className={`flex items-center ${
-                        isActive ? "active-nav-link" : ""
+                        isActive ? `active-nav-link ${direction === "rtl" && "after:right-0 after:left-auto after:translate-x-[7px]"}` : ""
                       }`}
                     >
-                      {item.href === "/about" ? (
-                        t.rich("about", {
-                          customDiv: (chunks) => <div>{chunks}</div>,
-                        })
-                      ) : (
-                        item.name
-                      )}
+                      {item.href === "/about"
+                        ? t.rich("about", {
+                            customDiv: (chunks) => <div>{chunks}</div>,
+                          })
+                        : item.name}
                     </Link>
                   </li>
                 );
@@ -179,29 +172,23 @@ export default function Navbar() {
                   }}
                   href={item.href}
                   className={`flex items-center ${
-                    isActive ? "active-nav-link" : ""
+                    isActive ? `active-nav-link ${direction === "rtl" && "after:right-0 after:left-auto after:translate-x-[7px]"}` : ""
                   }`}
                 >
-                  {item.href === "/about" ? (
-                    t.rich("about", {
-                      customDiv: (chunks) => <div>{chunks}</div>,
-                    })
-                  ) : (
-                    item.name
-                  )}
+                  {item.href === "/about"
+                    ? t.rich("about", {
+                        customDiv: (chunks) => <div>{chunks}</div>,
+                      })
+                    : item.name}
                 </Link>
               </li>
             );
           })}
-          <hr className="border-gray-300 my-3"/>
-          <li
-            className={`flex items-center p-1 gap-x-2 tracking-wide`}
-          >
+          <hr className="border-gray-300 my-3" />
+          <li className={`flex items-center p-1 gap-x-2 tracking-wide`}>
             <Link href={"/login"}>{tAuth("login")}</Link>
           </li>
-          <li
-            className={`flex items-center p-1 gap-x-2 tracking-wide`}
-          >
+          <li className={`flex items-center p-1 gap-x-2 tracking-wide`}>
             <Link href={"/register"}>{tAuth("register")}</Link>
           </li>
         </ul>

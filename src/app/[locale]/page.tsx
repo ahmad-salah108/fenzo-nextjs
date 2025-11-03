@@ -28,7 +28,7 @@ export default async function Home({
 
 	return (
 		<div className="flex gap-20">
-			<div className="hidden md:block relative min-h-[calc(100vh-71.03px)] w-1/4">
+			<div className="hidden xl:block relative min-h-[calc(100vh-71.03px)] w-[30%]">
 				<Image
 					src="/assets/images/home.png"
 					alt="home image"
@@ -37,7 +37,7 @@ export default async function Home({
 					priority
 				/>
 			</div>
-			<div className="w-[90%] md:w-[70%] mt-4 mx-auto px-[2.1rem] flex flex-col">
+			<div className="w-[90%] md:w-[70%] mx-auto px-[2.1rem] flex flex-col min-h-[calc(100vh-71.03px)]">
 				<div className={`relative`}>
 					{/* Infinite Image in the background */}
 					<img

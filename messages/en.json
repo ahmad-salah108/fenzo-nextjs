@@ -29,7 +29,7 @@
     "email_valid": "Please enter a valid email address.",
     "password": "Password",
     "password_min": "Password must be at least 8 characters long.",
-    "password_valid": "Password must contain at least one uppercase letter, one lowercase letter, and one special character.",
+    "password_valid": "Password must contain at least one uppercase, one lowercase, and one special character.",
     "forgot_password": "Forgot your password?",
     "login": "Login",
     "register": "Register",

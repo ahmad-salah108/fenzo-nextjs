@@ -30,7 +30,7 @@ async function ServicePage() {
         <p className="text-gray-400 text-xs pt-2">Service Supplier</p>
         <p className="text-sm pt-5 text-muted-foreground font-light leading-6">
           Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          industry. Lorem Ipsum has been the industrys standard dummy text ever
           since the 1500s.
         </p>
       </div>

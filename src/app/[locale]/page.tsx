@@ -58,7 +58,7 @@ export default async function Home({
 						<Orders />
 					</div> */}
 
-					<p className="text-[2rem] md:text-[3rem] font-extrabold leading-[3rem] md:leading-[4rem] uppercase mt-16">
+					<p className="text-[2rem] md:text-[3rem] font-extrabold leading-12 md:leading-16 uppercase mt-16">
 						{locale === "ar" ? (
 							"أفضل مكان"
 						) : (
@@ -67,13 +67,13 @@ export default async function Home({
 							</>
 						)}
 					</p>
-					<p className="slide-word-wrapper text-[1.9rem] md:text-[3rem] font-extrabold w-[23rem] md:w-[36rem] leading-[3rem] md:leading-[4rem] uppercase">
+					<p className="slide-word-wrapper text-[1.9rem] md:text-[3rem] font-extrabold w-92 md:w-xl leading-12 md:leading-16 uppercase">
 						{t("your")} &nbsp;
 						<span className="slide-word uppercase whitespace-nowrap">
 							{t("special_event")} <br /> {t("party")} <br /> {t("graduation")} <br /> {t("weddings")}
 						</span>
 					</p>
-					<p className={`mt-5 text-muted-foreground text-sm leading-7 max-w-[40rem]`}>
+					<p className={`mt-5 text-muted-foreground text-sm leading-7 max-w-160`}>
 						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.
 					</p>
 				</div>

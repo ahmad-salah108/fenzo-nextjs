@@ -32,8 +32,12 @@ const eventTypes = [
   },
 ];
 
-export async function DialogEvent({params}:{params: {locale: string}}) {
-  const {locale} = params;
+export async function DialogEvent({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations();
   const fontClassName = getFontClassName(locale);
   const direction = getLangDir(locale);
@@ -66,9 +70,7 @@ export async function DialogEvent({params}:{params: {locale: string}}) {
           </DialogHeader>
           <div className="grid gap-7 mt-3">
             <div className="grid gap-3">
-              <Label className="text-muted-foreground">
-                {t("event_type")}
-              </Label>
+              <Label className="text-muted-foreground">{t("event_type")}</Label>
               <SelectInput
                 placeholder={t("select_event_type")}
                 options={eventTypes}
@@ -76,10 +78,8 @@ export async function DialogEvent({params}:{params: {locale: string}}) {
               />
             </div>
             <div className="grid gap-3">
-              <Label className="text-muted-foreground">
-                {t("event_date")}
-              </Label>
-              <DatePicker width="w-[200px]"/>
+              <Label className="text-muted-foreground">{t("event_date")}</Label>
+              <DatePicker width="w-[200px]" />
             </div>
             <div className="grid gap-3">
               <Label className="text-muted-foreground">{t("place")}</Label>

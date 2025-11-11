@@ -18,9 +18,9 @@ export async function generateStaticParams() {
 export default async function Home({
 	params,
 }: {
-	params: { locale: string };
+	params: Promise<{ locale: string }>;
 }) {
-	const { locale } = params;
+	const { locale } = await params;
 	// Enable static rendering
 	setRequestLocale(locale);
 	const t = await getTranslations();
